@@ -1,12 +1,30 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import './styles/index.scss';
 
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+// Register all custom elements before anything renders.
+import './ui/Knob';
+import './ui/TransportBar';
+import './ui/Channel';
+import './ui/StepGrid';
+import './ui/Mixer';
+import './ui/SynthPanel';
+import './ui/Keyboard';
+import './ui/SaveLoad';
+import './ui/App';
 
-if (environment.production) {
-  enableProdMode();
-}
+import { AudioEngine } from './audio/AudioEngine';
+import { Scheduler } from './audio/Scheduler';
+import { ProjectStore } from './state/ProjectStore';
+import { Persistence } from './state/Persistence';
+import type { GrApp } from './ui/App';
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+const engine = new AudioEngine();
+const scheduler = new Scheduler();
+const store = new ProjectStore();
+const persistence = new Persistence();
+
+// Sync initial BPM.
+scheduler.setBpm(store.snapshot.bpm);
+
+// Boot the root element.
+const app = document.querySelector<GrApp>('gr-app')!;
+app.boot(engine, scheduler, store, persistence);

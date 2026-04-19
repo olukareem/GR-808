@@ -1,0 +1,45 @@
+// Dark palette — non-negotiable for a music production tool.
+:root {
+  // Backgrounds
+  --bg-0: #0b0b0f;          // void — outer page
+  --bg-1: #111118;          // app surface
+  --bg-2: #181820;          // panel / section
+  --bg-3: #1f1f2a;          // elevated card
+  --bg-4: #27273a;          // hover / active surface
+
+  // Borders
+  --border-0: #222232;
+  --border-1: #2e2e44;
+
+  // Text
+  --text-0: #f0f0f8;        // primary
+  --text-1: #9898b8;        // muted
+  --text-2: #5a5a78;        // dimmed
+
+  // Accent (808 red-orange — nod to the original hardware)
+  --accent:       #ff5a3c;
+  --accent-dim:   #6b1e10;
+  --accent-glow:  rgba(255, 90, 60, 0.25);
+
+  // Step button states
+  --step-off:       #1e1e2c;
+  --step-on:        #ff5a3c;
+  --step-on-glow:   rgba(255, 90, 60, 0.5);
+  --step-playing:   rgba(255, 90, 60, 0.18);
+  --step-soft:      #d47060;
+  --step-hard:      #ff8060;
+
+  // Knob
+  --knob-track:     #2a2a3a;
+  --knob-arc:       #ff5a3c;
+  --knob-indicator: #fff0ec;
+
+  // Sizes
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  // Transport
+  --transport-height: 56px;
+  --header-height: 72px;
+}

@@ -1,0 +1,109 @@
+@use './theme';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-0);
+  color: var(--text-0);
+  font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+gr-app {
+  display: block;
+  height: 100%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+ul { list-style: none; }
+
+// ── Base button styles ──────────────────────────────────────────────────────
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-sm);
+  background: var(--bg-3);
+  color: var(--text-1);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.1s, color 0.1s, border-color 0.1s;
+
+  &:hover { background: var(--bg-4); color: var(--text-0); }
+  &:active { background: var(--accent-dim); color: var(--accent); }
+
+  &.is-active {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-color: var(--accent-dim);
+  }
+
+  &--icon {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    svg { width: 14px; height: 14px; }
+  }
+
+  &--sm {
+    height: 22px;
+    padding: 0 7px;
+    font-size: 9px;
+  }
+
+  &--xs {
+    height: 18px;
+    padding: 0 5px;
+    font-size: 8px;
+  }
+
+  &--danger {
+    color: #ff4444;
+    border-color: #442222;
+    &:hover { background: #2a0808; }
+  }
+
+  &--start {
+    height: 48px;
+    padding: 0 32px;
+    font-size: 14px;
+    font-weight: 700;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    background: transparent;
+    border-radius: var(--radius-md);
+    letter-spacing: 0.2em;
+    &:hover { background: var(--accent-glow); }
+  }
+}
