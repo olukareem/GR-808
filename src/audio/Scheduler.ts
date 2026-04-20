@@ -18,11 +18,11 @@ export class Scheduler {
   private onStep: StepCallback | null = null;
 
   setBpm(bpm: number): void {
-    Tone.Transport.bpm.value = Math.max(40, Math.min(240, bpm));
+    Tone.getTransport().bpm.value = Math.max(40, Math.min(240, bpm));
   }
 
   get bpm(): number {
-    return Tone.Transport.bpm.value;
+    return Tone.getTransport().bpm.value;
   }
 
   /** Register the step callback — fires on every 16th note while running. */
@@ -38,33 +38,33 @@ export class Scheduler {
   start(): void {
     if (this.stepId !== null) this.stop(false);
     this.currentStep = 0;
-    this.stepId = Tone.Transport.scheduleRepeat((audioTime) => {
+    this.stepId = Tone.getTransport().scheduleRepeat((audioTime) => {
       const idx = this.currentStep;
       this.onStep?.(idx, audioTime);
       this.currentStep = (idx + 1) % this.stepCount;
     }, '16n');
-    Tone.Transport.start('+0.05');
+    Tone.getTransport().start('+0.05');
   }
 
   pause(): void {
-    Tone.Transport.pause();
+    Tone.getTransport().pause();
   }
 
   resume(): void {
-    Tone.Transport.start('+0.05');
+    Tone.getTransport().start('+0.05');
   }
 
   stop(resetStep = true): void {
-    Tone.Transport.stop();
+    Tone.getTransport().stop();
     if (this.stepId !== null) {
-      Tone.Transport.clear(this.stepId);
+      Tone.getTransport().clear(this.stepId);
       this.stepId = null;
     }
     if (resetStep) this.currentStep = 0;
   }
 
   get isRunning(): boolean {
-    return Tone.Transport.state === 'started';
+    return Tone.getTransport().state === 'started';
   }
 
   /**
@@ -73,6 +73,6 @@ export class Scheduler {
    * loop.
    */
   draw(time: number, cb: () => void): void {
-    Tone.Draw.schedule(cb, time);
+    Tone.getDraw().schedule(cb, time);
   }
 }

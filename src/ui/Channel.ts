@@ -112,7 +112,9 @@ export class GrChannel extends HTMLElement {
     // Mute / Solo.
     this.querySelector('.channel__mute')?.addEventListener('click', () => {
       const ch = this.store.getChannel(this.channelId);
-      this.store.setChannelMute(this.channelId, !ch.mute);
+      const next = !ch.mute;
+      this.store.setChannelMute(this.channelId, next);
+      this.engine.getBus(this.channelId).setMute(next);
     });
 
     this.querySelector('.channel__solo')?.addEventListener('click', () => {

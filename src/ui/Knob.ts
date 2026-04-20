@@ -46,7 +46,8 @@ export class GrKnob extends HTMLElement {
   }
 
   connectedCallback(): void {
-    this.className = 'knob knob--' + (this.getAttribute('size') ?? 'md');
+    // Add base classes without wiping caller-supplied classes (e.g. mixer__vol, mixer__pan).
+    this.classList.add('knob', 'knob--' + (this.getAttribute('size') ?? 'md'));
     this._build();
     this.addEventListener('mousedown', this._onMouseDown);
     this.addEventListener('dblclick', this._onDblClick);
